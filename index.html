@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank you team!</title>
+    <!-- Modern Font: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Modern CSS Reset & Variables */
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f1c40f;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            /* Reduced padding for narrower width */
+            max-width: 350px;
+            /* Even Narrower default width */
+            width: 95%;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+            transform: translateY(0);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: max-width 0.5s ease;
+        }
+
+        .container.wide-mode {
+            max-width: 900px;
+            /* Wide mode remains same */
+            padding: 15px 50px;
+            /* Reduced vertical padding drastically */
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.2), 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 10px auto;
+            border-radius: 50%;
+            padding: 10px;
+            background: #333;
+            /* Outer rim */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            display: none;
+            /* Hidden by default */
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(#f1c40f 0deg 30deg,
+                    #333 30deg 60deg,
+                    #f1c40f 60deg 90deg,
+                    #333 90deg 120deg,
+                    #f1c40f 120deg 150deg,
+                    #333 150deg 180deg,
+                    #f1c40f 180deg 210deg,
+                    #333 210deg 240deg,
+                    #f1c40f 240deg 270deg,
+                    #333 270deg 300deg,
+                    #f1c40f 300deg 330deg,
+                    #333 330deg 360deg);
+            transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .marker {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid #e74c3c;
+            z-index: 3;
+        }
+
+        @keyframes spin-wheel {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(3600deg);
+            }
+        }
+
+        .spinning {
+            animation: spin-wheel 6s linear infinite;
+        }
+
+        .spinner-hidden {
+            display: none;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1em;
+            text-align: center;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInSlideUp 0.5s ease-out forwards;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            background-color: #fee;
+            color: #c33;
+            border: 2px solid #fcc;
+        }
+
+        .message.success {
+            background-color: #efe;
+            color: #3c3;
+            border: 2px solid #cfc;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .thank-you-screen {
+            text-align: center;
+            padding: 10px 20px;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .thank-you-screen h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-screen p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .thank-you-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Welcome Section Styles */
+        .welcome-section {
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* New helper to target paragraphs in welcome section specifically if needed, 
+           or we can just use the wide container to let text flow. */
+        .welcome-section p {
+            max-width: 100% !important;
+            /* Override inline styles */
+            margin-bottom: 10px !important;
+        }
+
+        .welcome-steps {
+            text-align: left;
+            margin: 10px auto;
+            max-width: 100%;
+            /* Use full width */
+            color: #555;
+            font-size: 1rem;
+            /* Normalized to standard size */
+            line-height: 1.5;
+            /* Tighter line height */
+        }
+
+        .welcome-steps li {
+            margin-bottom: 10px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container wide-mode" id="mainContainer">
+        <!-- Welcome Section -->
+        <div id="welcomeSection" class="welcome-section">
+            <span style="font-size: 4em; display: block; margin-bottom: 10px;">🎉</span>
+            <h2>Thank you team!</h2>
+            <p style="text-align: left; max-width: 80%; margin: 0 auto 15px auto; color: #555;">
+                I want to thank each one of you for the successful delivery of the sprint and for your continued
+                contributions to the project. It really reflects your hard work, collaboration, and dedication.
+
+            </p>
+            <p style="text-align: left; max-width: 80%; margin: 0 auto 15px auto; color: #555;">
+                As a small gift from me, I have set up a <strong>'Spin to Win'</strong> lucky wheel for our next remote
+                lunch. Your treat amount is literally in your hands.
+
+            </p>
+            <p style="font-weight: bold; margin-top: 25px; margin-bottom: 10px; text-align: left;">To participate:</p>
+            <ul class="welcome-steps">
+                <li>Collect a <strong>Spin Token</strong> from Vinesh.</li>
+                <li>Fill in your details in the form.</li>
+                <li>Spin to see your lucky win!</li>
+            </ul>
+            <p style="margin-top: 30px; text-align: left; color: #555;">I can’t wait to see what
+                everyone gets! Thank you once again for
+                the amazing work.</p>
+            <p style="text-align: left; color: #555; padding-bottom: 10px;">Cheers,<br>Sarvesh S</p>
+            <button id="getStartedBtn" class="start-btn">Get Started</button>
+        </div>
+
+        <!-- Validation Section (Hidden initially) -->
+        <div id="validationSection" style="display: none;">
+            <h1 id="validationTitle">🎫 Token Validator</h1>
+            <form id="voucherForm">
+                <div class="form-group">
+                    <label for="voucherId">Spin Token</label>
+                    <input type="text" id="voucherId" name="voucherId" placeholder="Enter your token" autocomplete="off"
+                        required />
+                </div>
+                <button type="submit" id="submitBtn">Validate</button>
+            </form>
+
+            <form id="detailsForm" style="display: none;">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Cardy or PB Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email ID" autocomplete="email"
+                        required />
+                </div>
+                <div class="form-group">
+                    <label for="upi">UPI ID</label>
+                    <input type="text" id="upi" name="upi" placeholder="Enter UPI ID or UPI Mobile number " required />
+                </div>
+                <button type="submit" id="submitDetailsBtn">Submit</button>
+            </form>
+
+            <div id="message" class="message"></div>
+        </div>
+
+        <div id="thankYouScreen" class="thank-you-screen">
+            <div id="amountSection">
+                <!-- Wheel Structure -->
+                <div id="wheelContainer" class="wheel-container">
+                    <div class="marker"></div>
+                    <div id="wheel" class="wheel"></div>
+                    <div id="wheelCenter" class="wheel-center">Spin!</div>
+                </div>
+
+                <p id="prankMessage"
+                    style="display: none; color: #e74c3c; margin-top: 10px; font-weight: 700; font-size: 1.25em; background: #fff5f5; padding: 15px; border-radius: 12px; border: 2px dashed #ffcdd2;">
+                    lol just kidding! 😜 This was a warm-up spin.
+                </p>
+
+                <button id="seeAmountBtn" type="button" style="background: #f1c40f; color: #333; margin-top: 10px;">Spin
+                    Again</button>
+
+                <p id="finalMessage"
+                    style="display: none; color: #2ecc71; margin-top: 10px; font-weight: 600; font-size: 1.1em; background: #f0fff4; padding: 15px; border-radius: 12px; border: 2px solid #c6f6d5;">
+                    Congratulations! Expect your reward via UPI by the end of the week.
+                </p>
+            </div>
+
+        </div>
+
+
+
+        <script>
+            // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+            // After deploying your Apps Script, you'll get a URL like:
+            // https://script.google.com/macros/s/AKfycby.../exec
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSxhs-p22cfz4wpmq6-3VaGpiIhK3J96ZEUbR6ezIMmb93xMn8mxjJYoqWphYq_g-d/exec';
+
+            const form = document.getElementById('voucherForm');
+            const detailsForm = document.getElementById('detailsForm');
+
+            // New Sections
+            const validationSection = document.getElementById('validationSection');
+            const welcomeSection = document.getElementById('welcomeSection');
+            const getStartedBtn = document.getElementById('getStartedBtn');
+
+            const thankYouScreen = document.getElementById('thankYouScreen');
+            const amountDisplay = document.getElementById('wheelCenter'); // Re-purpose for center text
+            const wheelContainer = document.getElementById('wheelContainer');
+            const wheel = document.getElementById('wheel');
+            const seeAmountBtn = document.getElementById('seeAmountBtn');
+            const prankMessage = document.getElementById('prankMessage');
+            const finalMessage = document.getElementById('finalMessage');
+
+            let hasPranked = false; // Track if we've done the prank yet
+            const voucherInput = document.getElementById('voucherId');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitDetailsBtn = document.getElementById('submitDetailsBtn');
+            const messageDiv = document.getElementById('message');
+            let currentVoucherId = '';
+
+            // Handle Get Started
+            if (getStartedBtn) {
+                getStartedBtn.onclick = function () {
+                    welcomeSection.style.display = 'none';
+                    validationSection.style.display = 'block';
+                    if (voucherInput) voucherInput.focus();
+                };
+            }
+
+            function showMessage(text, isError = true) {
+                messageDiv.textContent = text;
+                messageDiv.className = `message show ${isError ? 'error' : 'success'}`;
+            }
+
+            function hideMessage() {
+                messageDiv.classList.remove('show');
+            }
+
+            function setLoading(isLoading, button = submitBtn) {
+                button.disabled = isLoading;
+                if (isLoading) {
+                    if (button === submitBtn) {
+                        button.innerHTML = '<span class="loading"></span>Validating...';
+                    } else {
+                        button.innerHTML = '<span class="loading"></span>Submitting...';
+                    }
+                } else {
+                    if (button === submitBtn) {
+                        button.textContent = 'Validate Voucher';
+                    } else {
+                        button.textContent = 'Submit';
+                    }
+                }
+            }
+
+            function setupFetchAmountBtn() {
+                seeAmountBtn.style.display = 'inline-block';
+                seeAmountBtn.textContent = 'Spin Now';
+                seeAmountBtn.style.backgroundColor = '#f1c40f';
+                seeAmountBtn.style.color = '#333';
+                seeAmountBtn.disabled = false;
+
+                // Show wheel initially
+                wheelContainer.style.display = 'block';
+                prankMessage.style.display = 'none';
+
+                seeAmountBtn.onclick = async function () {
+                    // 1. UI Setup
+                    seeAmountBtn.style.display = 'none'; // Hide button
+                    seeAmountBtn.classList.remove('fade-in-up'); // Clear animation for re-trigger
+                    prankMessage.classList.remove('fade-in-up');
+
+                    wheelContainer.style.display = 'block';
+                    // amountDisplay.textContent = 'Spinning...'; // Removed static text
+                    wheel.classList.add('spinning');
+                    prankMessage.style.display = 'none';
+
+                    // Add running numbers animation in the center
+                    let spinInterval = setInterval(() => {
+                        const randomVal = Math.floor(Math.random() * 1001); // 0 to 1000
+                        amountDisplay.textContent = '₹' + randomVal;
+                    }, 50); // Fast update for "running" effect
+
+                    // 2. Initiate Fetch & Timer
+                    const minAnimationTime = 2000; // Reduced to 2s as requested
+
+                    // --- LOGIC SPLIT: PRANK vs REAL ---
+
+                    if (!hasPranked) {
+                        // === PRANK MODE ===
+                        // Wait only for animation time
+                        await new Promise(resolve => setTimeout(resolve, minAnimationTime));
+
+                        // Stop Animation
+                        clearInterval(spinInterval);
+                        wheel.classList.remove('spinning');
+                        const randomStop = Math.floor(Math.random() * 360);
+                        wheel.style.transform = `rotate(${randomStop}deg)`;
+
+                        // Show Prank
+                        amountDisplay.innerHTML = '<div style="font-size:0.8em; line-height:1.2; padding:5px;">Better luck<br>next time!</div>';
+
+                        // Small pause (600ms)
+                        await new Promise(resolve => setTimeout(resolve, 600));
+
+                        // Both animate together
+                        prankMessage.classList.add('fade-in-up');
+                        prankMessage.style.display = 'block';
+
+                        seeAmountBtn.textContent = 'Spin Again';
+                        seeAmountBtn.classList.add('fade-in-up');
+                        seeAmountBtn.style.display = 'inline-block';
+
+                        hasPranked = true;
+                        return; // STOP HERE
+                    }
+
+                    // === REAL MODE (Execution continues if hasPranked is true) ===
+                    let fetchPromise;
+
+                    // Create the fetch promise
+                    try {
+                        fetchPromise = fetch(`${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}`)
+                            .then(r => r.json())
+                            .catch(e => {
+                                // Fallback logic wrapped in promise
+                                return new Promise((resolve) => {
+                                    const callbackName = 'amountCallback_' + Date.now();
+                                    window[callbackName] = function (response) {
+                                        delete window[callbackName];
+                                        resolve(response);
+                                    };
+                                    const script = document.createElement('script');
+                                    script.src = `${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}&callback=${callbackName}`;
+                                    document.body.appendChild(script);
+                                    // Safety timeout for JSONP
+                                    setTimeout(() => resolve({ success: false, message: 'Timeout' }), 10000);
+                                });
+                            });
+                    } catch (e) {
+                        fetchPromise = Promise.resolve({ success: false, message: 'Error initiating fetch' });
+                    }
+
+                    // 3. Wait for both Animation Timer AND Fetch
+                    try {
+                        const [data] = await Promise.all([
+                            fetchPromise,
+                            new Promise(resolve => setTimeout(resolve, minAnimationTime))
+                        ]);
+
+                        // 4. Finish Animation
+                        clearInterval(spinInterval); // Stop the running numbers
+                        wheel.classList.remove('spinning');
+                        // Add a randomized rotation to look like it stopped
+                        const randomStop = Math.floor(Math.random() * 360);
+                        wheel.style.transform = `rotate(${randomStop}deg)`;
+
+                        if (data && data.success && data.amount) {
+                            amountDisplay.innerHTML = '<div style="font-size:1.8em; color:#2ecc71;">₹' + data.amount + '</div>';
+
+                            // Show final success message
+                            finalMessage.classList.add('fade-in-up');
+                            finalMessage.style.display = 'block';
+                        } else {
+                            amountDisplay.textContent = 'Error';
+                            seeAmountBtn.style.display = 'inline-block';
+                            seeAmountBtn.textContent = 'Retry';
+                        }
+                    } catch (err) {
+                        clearInterval(spinInterval);
+                        wheel.classList.remove('spinning');
+                        amountDisplay.textContent = 'Error';
+                        seeAmountBtn.style.display = 'inline-block';
+                    }
+                };
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const voucherId = voucherInput.value.trim();
+
+                if (!voucherId) {
+                    showMessage('Please enter a voucher ID', true);
+                    return;
+                }
+
+                if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+                    showMessage('Error: Please update SCRIPT_URL in the HTML file with your Google Apps Script Web App URL', true);
+                    return;
+                }
+
+                hideMessage();
+                setLoading(true);
+
+                try {
+                    // Try fetch first (works if CORS is enabled in Apps Script)
+                    const response = await fetch(`${SCRIPT_URL}?voucherId=${encodeURIComponent(voucherId)}`, {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setLoading(false);
+
+                        if (data.success) {
+                            showMessage(data.message || 'Token is valid', false);
+                            currentVoucherId = voucherId;
+                            // Show additional form fields
+                            form.style.display = 'none';
+                            document.getElementById('validationTitle').textContent = 'Participant Details';
+                            detailsForm.style.display = 'block';
+                            // Pre-fill voucher ID in hidden field
+                            document.getElementById('name').focus();
+                        } else {
+                            showMessage(data.message || 'Invalid Token ID', true);
+                        }
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                } catch (error) {
+                    // Fallback to JSONP if fetch fails (for CORS issues)
+                    try {
+                        const callbackName = 'voucherCallback_' + Date.now();
+                        window[callbackName] = function (response) {
+                            delete window[callbackName];
+                            setLoading(false);
+
+                            if (response.success) {
+                                showMessage(response.message || 'Token is valid', false);
+                                currentVoucherId = voucherId;
+                                // Show additional form fields
+                                form.style.display = 'none';
+                                document.getElementById('validationTitle').textContent = 'Participant Details';
+                                detailsForm.style.display = 'block';
+                                // Pre-fill voucher ID in hidden field
+                                document.getElementById('name').focus();
+                            } else {
+                                showMessage(response.message || 'Invalid Token', true);
+                            }
+                        };
+
+                        const script = document.createElement('script');
+                        script.src = `${SCRIPT_URL}?voucherId=${encodeURIComponent(voucherId)}&callback=${callbackName}`;
+                        script.onerror = function () {
+                            setLoading(false);
+                            showMessage('An error occurred. Please check your connection and try again.', true);
+                            if (script.parentNode) {
+                                script.parentNode.removeChild(script);
+                            }
+                        };
+                        document.body.appendChild(script);
+
+                        // Cleanup script tag after a delay
+                        setTimeout(() => {
+                            if (script.parentNode) {
+                                script.parentNode.removeChild(script);
+                            }
+                            if (window[callbackName]) {
+                                delete window[callbackName];
+                                setLoading(false);
+                                showMessage('Request timeout. Please try again.', true);
+                            }
+                        }, 10000);
+                    } catch (jsonpError) {
+                        console.error('Error:', jsonpError);
+                        setLoading(false);
+                        showMessage('An error occurred. Please try again.', true);
+                    }
+                }
+            });
+
+            // Allow Enter key to submit
+            voucherInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    form.dispatchEvent(new Event('submit'));
+                }
+            });
+
+            // Handle details form submission
+            detailsForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = {
+                    voucherid: currentVoucherId,
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    upi: document.getElementById('upi').value.trim()
+                };
+
+                // Validate all fields (amount will be generated by backend)
+                if (!formData.name || !formData.email || !formData.upi) {
+                    showMessage('Please fill in all fields', true);
+                    return;
+                }
+
+                hideMessage();
+                setLoading(true, submitDetailsBtn);
+
+                // Use form submission method to avoid CORS issues with Google Apps Script
+                const submitForm = document.createElement('form');
+                submitForm.method = 'POST';
+                submitForm.action = SCRIPT_URL;
+                submitForm.style.display = 'none';
+
+                // Add all form fields
+                Object.keys(formData).forEach(key => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = formData[key];
+                    submitForm.appendChild(input);
+                });
+
+                // Create hidden iframe to receive response
+                const iframe = document.createElement('iframe');
+                iframe.name = 'submitFrame';
+                iframe.id = 'submitFrame';
+                iframe.style.display = 'none';
+                submitForm.target = 'submitFrame';
+                document.body.appendChild(iframe);
+                document.body.appendChild(submitForm);
+
+                // Listen for messages from iframe (postMessage)
+                const messageHandler = function (event) {
+                    // Verify message is from our script (basic check)
+                    if (event.data && typeof event.data === 'object' && 'success' in event.data) {
+                        const data = event.data;
+                        setLoading(false, submitDetailsBtn);
+
+                        if (data.success) {
+                            // Hide forms and show thank you screen
+                            detailsForm.style.display = 'none';
+                            form.style.display = 'none';
+                            // Ensure validation section wrapper is hidden or the thank you screen is shown over it
+                            // Since thankYouScreen is separate sibling, we can just hide validationSection
+                            validationSection.style.display = 'none';
+                            thankYouScreen.style.display = 'block';
+                            // currentVoucherId = ''; // Keep for Fetch Amount
+
+                            // Setup "Fetch Amount" button
+                            setupFetchAmountBtn();
+
+                            // IMPORTANT: We do NOT clear currentVoucherId here so we can use it for fetching amount
+
+                        } else {
+                            showMessage(data.message || 'Error submitting form', true);
+                        }
+
+                        // Cleanup
+                        window.removeEventListener('message', messageHandler);
+                        setTimeout(() => {
+                            if (submitForm.parentNode) {
+                                document.body.removeChild(submitForm);
+                            }
+                            if (iframe.parentNode) {
+                                document.body.removeChild(iframe);
+                            }
+                        }, 1000);
+                    }
+                };
+
+                window.addEventListener('message', messageHandler);
+
+                // Fallback: Also listen for iframe load (in case postMessage doesn't work)
+                iframe.onload = function () {
+                    // If postMessage hasn't fired after 2 seconds, assume success
+                    setTimeout(() => {
+                        if (iframe.parentNode) {
+                            setLoading(false, submitDetailsBtn);
+                            // showMessage('Form submitted successfully!', false);
+                            detailsForm.reset();
+                            detailsForm.style.display = 'none';
+                            form.style.display = 'none';
+                            validationSection.style.display = 'none'; // Hide wrapper
+                            thankYouScreen.style.display = 'block';
+                            setupFetchAmountBtn(); // Use correct handler in fallback
+
+                            // voucherInput.value = '';
+                            // currentVoucherId = ''; // Keep for fetch amount
+                            window.removeEventListener('message', messageHandler);
+                            if (submitForm.parentNode) {
+                                document.body.removeChild(submitForm);
+                            }
+                            document.body.removeChild(iframe);
+                        }
+                    }, 2000);
+                };
+
+                // Submit the form
+                submitForm.submit();
+
+                // Fallback timeout in case iframe doesn't load
+                setTimeout(() => {
+                    if (iframe.parentNode) {
+                        setLoading(false, submitDetailsBtn);
+                        // showMessage('Form submitted successfully!', false);
+                        detailsForm.reset();
+                        detailsForm.style.display = 'none';
+                        form.style.display = 'none';
+                        validationSection.style.display = 'none'; // Hide wrapper
+                        thankYouScreen.style.display = 'block';
+                        setupFetchAmountBtn(); // Use correct handler in fallback
+                        seeAmountBtn.style.display = 'inline-block'; // Ensure visible (setup function does this too but safe to keep)
+                        // seeAmountBtn.onclick = function () { alert('Please check your internet connection or try again.'); }; // OLD FALLBACK REMOVED
+
+                        // voucherInput.value = '';
+                        // currentVoucherId = ''; // Keep for fetch amount
+                        if (submitForm.parentNode) {
+                            document.body.removeChild(submitForm);
+                        }
+                        document.body.removeChild(iframe);
+                    }
+                }, 5000);
+            });
+
+            function setLoading(isLoading, button = submitBtn) {
+                button.disabled = isLoading;
+                if (isLoading) {
+                    if (button === submitBtn) {
+                        button.innerHTML = '<span class="loading"></span>Validating...';
+                    } else {
+                        button.innerHTML = '<span class="loading"></span>Submitting...';
+                    }
+                } else {
+                    if (button === submitBtn) {
+                        button.textContent = 'Validate Voucher';
+                    } else {
+                        button.textContent = 'Submit';
+                    }
+                }
+            }
+        </script>
+</body>
+
+</html>
