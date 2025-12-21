@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahalo team!</title>
+    <title>Thank you team!</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zm256 32a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm-96-32a96 96 0 1 0 192 0 96 96 0 1 0 -192 0zm-56-16c0-32.4 16.3-66.6 42.8-93.2S207.6 104 240 104c13.3 0 24-10.7 24-24s-10.7-24-24-24c-47.9 0-93.7 23.5-127.1 56.9S56 192.1 56 240c0 13.3 10.7 24 24 24s24-10.7 24-24z'/%3E%3C/svg%3E">
     <!-- Modern Font: Poppins -->
@@ -77,6 +77,84 @@
             100% {
                 background-position: 0% 50%;
             }
+        }
+
+        .entrance-bg {
+            background: url('entrance.jpg') no-repeat center center fixed !important;
+            background-size: cover !important;
+            animation: none !important;
+        }
+
+        /* Transparent layer for Validation/Spin sections */
+        body.entrance-bg .container {
+            background: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+            animation: none !important;
+        }
+
+        body.entrance-bg h1,
+        body.entrance-bg h2,
+        body.entrance-bg label,
+        body.entrance-bg #validationTitle {
+            color: #d4af37;
+            /* Golden theme */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        body.entrance-bg .form-group label {
+            color: #d4af37;
+            font-weight: 700;
+        }
+
+        body.entrance-bg input[type="text"],
+        body.entrance-bg input[type="email"],
+        body.entrance-bg select {
+            background: rgba(255, 255, 255, 0.15);
+            /* More transparent */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        body.entrance-bg input[type="text"]::placeholder,
+        body.entrance-bg input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        body.entrance-bg select option {
+            background: #333;
+            /* Ensure dropdown options are readable */
+            color: #fff;
+        }
+
+        body.entrance-bg input[type="text"]:focus,
+        body.entrance-bg input[type="email"]:focus {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        body.entrance-bg button {
+            background: linear-gradient(135deg, #d4af37 0%, #8a6d3b 100%) !important;
+            color: #1a1a1a !important;
+            border: 1px solid rgba(255, 255, 255, 0.5) !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        body.entrance-bg button:hover {
+            background: linear-gradient(135deg, #e5c066 0%, #a67c00 100%) !important;
+            transform: translateY(-2px) scale(1.02);
         }
 
         @keyframes slideUp {
@@ -178,9 +256,11 @@
             margin: 20px auto;
             border-radius: 50%;
             padding: 15px;
-            background: #222;
-            /* Darker rim */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #4b3621, #2c1e12);
+            /* Deep wood/bronze */
+            border: 5px double #d4af37;
+            /* Double gold border */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.5);
             display: none;
             /* Hidden by default */
         }
@@ -189,21 +269,22 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: conic-gradient(#f1c40f 0deg 30deg,
-                    #333 30deg 60deg,
-                    #f1c40f 60deg 90deg,
-                    #333 90deg 120deg,
-                    #f1c40f 120deg 150deg,
-                    #333 150deg 180deg,
-                    #f1c40f 180deg 210deg,
-                    #333 210deg 240deg,
-                    #f1c40f 240deg 270deg,
-                    #333 270deg 300deg,
-                    #f1c40f 300deg 330deg,
-                    #333 330deg 360deg);
+            background: conic-gradient(#d4af37 0deg 30deg,
+                    #630d0d 30deg 60deg,
+                    #d4af37 60deg 90deg,
+                    #630d0d 90deg 120deg,
+                    #d4af37 120deg 150deg,
+                    #630d0d 150deg 180deg,
+                    #d4af37 180deg 210deg,
+                    #630d0d 210deg 240deg,
+                    #d4af37 240deg 270deg,
+                    #630d0d 270deg 300deg,
+                    #d4af37 300deg 330deg,
+                    #630d0d 330deg 360deg);
             transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
             position: relative;
             z-index: 1;
+            border: 2px solid #5a401c;
         }
 
         /* Circular Slider Styles */
@@ -224,7 +305,7 @@
             position: absolute;
             width: 50px;
             height: 60px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 50 60"><path d="M25 60 L2 5 L48 5 Z" fill="red" stroke="black" stroke-width="3"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 50 60"><path d="M25 60 L5 15 L25 22 L45 15 Z" fill="%23d4af37" stroke="%235a401c" stroke-width="2"/></svg>');
             background-repeat: no-repeat;
             background-size: contain;
             top: calc(50% - 30px);
@@ -267,29 +348,32 @@
             transform: translate(-50%, -50%);
             width: 140px;
             height: 140px;
-            background: white;
+            background: radial-gradient(circle, #f9f295 0%, #d4af37 60%, #b29433 100%);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 1.5em;
             font-weight: bold;
-            color: #333;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: #1a1a1a;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             z-index: 2;
+            border: 4px solid #5a401c;
+            font-family: 'Georgia', serif;
         }
 
         .marker {
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
             border-left: 15px solid transparent;
             border-right: 15px solid transparent;
-            border-top: 25px solid #e74c3c;
+            border-top: 30px solid #d4af37;
             z-index: 3;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
         }
 
         @keyframes spin-wheel {
@@ -482,7 +566,6 @@
 
         <!-- Validation Section (Hidden initially) -->
         <div id="validationSection" style="display: none;">
-            <h1 id="validationTitle">🎫 Token Validator</h1>
             <form id="voucherForm">
                 <div class="form-group">
                     <label for="voucherId">Spin Token</label>
@@ -493,6 +576,7 @@
             </form>
 
             <form id="detailsForm" style="display: none;">
+                <h2 id="detailsTitle" style="margin-bottom: 20px;">Participant Details</h2>
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name"
@@ -563,7 +647,8 @@
 
         </div>
 
-
+        <audio id="entranceSound" src="entrancebg.mp3" loop></audio>
+        <audio id="spinSound" src="spinbg.mp3" loop></audio>
 
         <script>
             // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
@@ -589,6 +674,8 @@
             const preferenceSelect = document.getElementById('preference');
             const redemptionSection = document.getElementById('redemptionSection');
             const redemptionSteps = document.getElementById('redemptionSteps');
+            const entranceSound = document.getElementById('entranceSound');
+            const spinSound = document.getElementById('spinSound');
 
             const redemptionData = {
                 'JioMart': [
@@ -640,6 +727,9 @@
                 getStartedBtn.onclick = function () {
                     welcomeSection.style.display = 'none';
                     validationSection.style.display = 'block';
+                    document.body.classList.add('entrance-bg');
+                    document.getElementById('mainContainer').classList.remove('wide-mode');
+                    if (entranceSound) entranceSound.play().catch(e => console.log("Audio play failed:", e));
                     if (voucherInput) voucherInput.focus();
                 };
             }
@@ -679,14 +769,16 @@
             let totalDragged = 0;
             let lastAngle = -90;
 
-            function initCircularSlider() {
+            function initCircularSlider(keepText = false) {
                 const handle = document.getElementById('sliderHandle');
                 const progress = document.getElementById('sliderProgress');
                 const container = wheelContainer;
 
                 progress.style.display = 'block';
                 handle.style.display = 'flex';
-                amountDisplay.textContent = 'Drag the pointer';
+                if (!keepText) {
+                    amountDisplay.textContent = 'Drag the pointer';
+                }
 
                 // Reset state
                 currentRotation = 0;
@@ -811,6 +903,7 @@
 
                 wheelContainer.style.display = 'block';
                 wheel.classList.add('spinning');
+                if (spinSound) spinSound.play().catch(e => console.log("Spin audio play failed:", e));
                 prankMessage.style.display = 'none';
 
                 // Add running numbers animation in the center
@@ -832,6 +925,10 @@
                     // Stop Animation
                     clearInterval(spinInterval);
                     wheel.classList.remove('spinning');
+                    if (spinSound) {
+                        spinSound.pause();
+                        spinSound.currentTime = 0;
+                    }
                     const randomStop = Math.floor(Math.random() * 360);
                     wheel.style.transform = `rotate(${randomStop}deg)`;
 
@@ -847,7 +944,7 @@
 
                     // Prepare for second spin automatically
                     setTimeout(() => {
-                        initCircularSlider();
+                        initCircularSlider(true);
                     }, 1000);
 
                     hasPranked = true;
@@ -890,6 +987,10 @@
                     // 4. Finish Animation
                     clearInterval(spinInterval); // Stop the running numbers
                     wheel.classList.remove('spinning');
+                    if (spinSound) {
+                        spinSound.pause();
+                        spinSound.currentTime = 0;
+                    }
                     // Add a randomized rotation to look like it stopped
                     const randomStop = Math.floor(Math.random() * 360);
                     wheel.style.transform = `rotate(${randomStop}deg)`;
@@ -913,6 +1014,10 @@
                 } catch (err) {
                     clearInterval(spinInterval);
                     wheel.classList.remove('spinning');
+                    if (spinSound) {
+                        spinSound.pause();
+                        spinSound.currentTime = 0;
+                    }
                     amountDisplay.textContent = 'Error';
                     // Re-enable slider on error
                     setTimeout(() => initCircularSlider(), 1000);
@@ -951,11 +1056,10 @@
                         setLoading(false);
 
                         if (data.success) {
-                            showMessage(data.message || 'Token is valid', false);
+                            // showMessage(data.message || 'Token is valid', false);
                             currentVoucherId = voucherId;
                             // Show additional form fields
                             form.style.display = 'none';
-                            document.getElementById('validationTitle').textContent = 'Participant Details';
                             detailsForm.style.display = 'block';
                             // Pre-fill voucher ID in hidden field
                             document.getElementById('name').focus();
@@ -974,11 +1078,10 @@
                             setLoading(false);
 
                             if (response.success) {
-                                showMessage(response.message || 'Token is valid', false);
+                                // showMessage(response.message || 'Token is valid', false);
                                 currentVoucherId = voucherId;
                                 // Show additional form fields
                                 form.style.display = 'none';
-                                document.getElementById('validationTitle').textContent = 'Participant Details';
                                 detailsForm.style.display = 'block';
                                 // Pre-fill voucher ID in hidden field
                                 document.getElementById('name').focus();
@@ -1086,6 +1189,12 @@
                             thankYouScreen.style.display = 'block';
                             // currentVoucherId = ''; // Keep for Fetch Amount
 
+                            // Stop background sound
+                            if (entranceSound) {
+                                entranceSound.pause();
+                                entranceSound.currentTime = 0;
+                            }
+
                             // Setup "Fetch Amount" button
                             setupFetchAmountBtn();
 
@@ -1122,6 +1231,13 @@
                             form.style.display = 'none';
                             validationSection.style.display = 'none'; // Hide wrapper
                             thankYouScreen.style.display = 'block';
+
+                            // Stop background sound
+                            if (entranceSound) {
+                                entranceSound.pause();
+                                entranceSound.currentTime = 0;
+                            }
+
                             setupFetchAmountBtn(); // Use correct handler in fallback
 
                             // voucherInput.value = '';
@@ -1148,6 +1264,13 @@
                         form.style.display = 'none';
                         validationSection.style.display = 'none'; // Hide wrapper
                         thankYouScreen.style.display = 'block';
+
+                        // Stop background sound
+                        if (entranceSound) {
+                            entranceSound.pause();
+                            entranceSound.currentTime = 0;
+                        }
+
                         setupFetchAmountBtn(); // Use correct handler in fallback
                         seeAmountBtn.style.display = 'inline-block'; // Ensure visible (setup function does this too but safe to keep)
                         // seeAmountBtn.onclick = function () { alert('Please check your internet connection or try again.'); }; // OLD FALLBACK REMOVED
