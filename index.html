@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank you team!</title>
+    <title>Mahalo team!</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zm256 32a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm-96-32a96 96 0 1 0 192 0 96 96 0 1 0 -192 0zm-56-16c0-32.4 16.3-66.6 42.8-93.2S207.6 104 240 104c13.3 0 24-10.7 24-24s-10.7-24-24-24c-47.9 0-93.7 23.5-127.1 56.9S56 192.1 56 240c0 13.3 10.7 24 24 24s24-10.7 24-24z'/%3E%3C/svg%3E">
     <!-- Modern Font: Poppins -->
@@ -118,7 +118,8 @@
         }
 
         input[type="text"],
-        input[type="email"] {
+        input[type="email"],
+        select {
             width: 100%;
             padding: 14px;
             border: 2px solid #e2e8f0;
@@ -171,14 +172,15 @@
 
         .wheel-container {
             position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 10px auto;
+            width: 280px;
+            /* Increased to fit slider */
+            height: 280px;
+            margin: 20px auto;
             border-radius: 50%;
-            padding: 10px;
-            background: #333;
-            /* Outer rim */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            background: #222;
+            /* Darker rim */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             display: none;
             /* Hidden by default */
         }
@@ -200,6 +202,62 @@
                     #f1c40f 300deg 330deg,
                     #333 330deg 360deg);
             transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Circular Slider Styles */
+        .slider-track {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            z-index: 0;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-handle {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 50 60"><path d="M25 60 L2 5 L48 5 Z" fill="red" stroke="black" stroke-width="3"/></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+            top: calc(50% - 30px);
+            left: calc(50% - 25px);
+            cursor: grab;
+            z-index: 10;
+            transition: transform 0.1s ease;
+            user-select: none;
+            touch-action: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slider-handle:active {
+            cursor: grabbing;
+            transform: scale(1.1);
+        }
+
+        .slider-handle::after {
+            content: '';
+        }
+
+        .slider-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            display: none;
+            mask-image: radial-gradient(transparent 132px, black 133px);
+            -webkit-mask-image: radial-gradient(transparent 132px, black 133px);
         }
 
         .wheel-center {
@@ -400,26 +458,24 @@
         <!-- Welcome Section -->
         <div id="welcomeSection" class="welcome-section">
             <span style="font-size: 4em; display: block; margin-bottom: 10px;">🎉</span>
-            <h2>Thank you team!</h2>
+            <h2>Mahalo team!</h2>
             <p style="text-align: left; max-width: 80%; margin: 0 auto 15px auto; color: #555;">
-                I want to thank each one of you for the successful delivery of the sprint and for your continued
-                contributions to the project. It really reflects your hard work, collaboration, and dedication.
+                It's the end of the year and a good time to reflect on the good times we have had working together. So,
+                here's a little something from me as a colleague who values your support. You may want to use it for
+                your next coffee break or however you'd like it :)
 
             </p>
             <p style="text-align: left; max-width: 80%; margin: 0 auto 15px auto; color: #555;">
-                As a small gift from me, I have set up a <strong>'Spin to Win'</strong> lucky wheel for our next remote
-                lunch. Your treat amount is literally in your hands.
-
+                Wanted to keep it as a fun activity - Spin a wheel and an assured treat awaits you!
             </p>
-            <p style="font-weight: bold; margin-top: 25px; margin-bottom: 10px; text-align: left;">To participate:</p>
+            <p style=" margin-top: 25px; margin-bottom: 10px; text-align: left;">All you need to do is : </p>
             <ul class="welcome-steps">
                 <li>Collect a <strong>Spin Token</strong> from Vinesh.</li>
                 <li>Fill in your details in the form.</li>
                 <li>Spin to see your lucky win!</li>
             </ul>
             <p style="margin-top: 30px; text-align: left; color: #555;">I can’t wait to see what
-                everyone gets! Thank you once again for
-                the amazing work.</p>
+                everyone gets!</p>
             <p style="text-align: left; color: #555; padding-bottom: 10px;">Cheers,<br>Sarvesh S</p>
             <button id="getStartedBtn" class="start-btn">Get Started</button>
         </div>
@@ -433,7 +489,7 @@
                     <input type="text" id="voucherId" name="voucherId" placeholder="Enter your token" autocomplete="off"
                         required />
                 </div>
-                <button type="submit" id="submitBtn">Validate</button>
+                <button type="submit" id="submitBtn">Open Sesame</button>
             </form>
 
             <form id="detailsForm" style="display: none;">
@@ -448,8 +504,27 @@
                         required />
                 </div>
                 <div class="form-group">
-                    <label for="upi">UPI ID</label>
-                    <input type="text" id="upi" name="upi" placeholder="Enter UPI ID or UPI Mobile number " required />
+                    <label for="mobile">Mobile Number</label>
+                    <input type="text" id="mobile" name="mobile" placeholder="Enter Mobile Number" required />
+                </div>
+                <div class="form-group">
+                    <label for="preference">Treat Preference</label>
+                    <select id="preference" name="preference" required
+                        style="width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; font-family: 'Poppins', sans-serif; background: #f7fafc; outline: none;">
+                        <option value="" disabled selected>Select your preference</option>
+                        <option value="EatSure">EatSure (Faasos, Behrouz Biryani, OvenStory, Sweet Truth etc)</option>
+                        <option value="Dominos">Dominos</option>
+                        <option value="BigBasket">BigBasket</option>
+                        <option value="JioMart">JioMart</option>
+                    </select>
+                </div>
+                <!-- Redemption Steps Container -->
+                <div id="redemptionSection"
+                    style="display: none; text-align: left; margin-top: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; animation: fadeIn 0.3s ease;">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 8px; color: #4a5568;">How to redeem?</h4>
+                    <ul id="redemptionSteps"
+                        style="font-size: 0.85rem; color: #718096; padding-left: 20px; line-height: 1.6;">
+                    </ul>
                 </div>
                 <button type="submit" id="submitDetailsBtn">Submit</button>
             </form>
@@ -461,22 +536,28 @@
             <div id="amountSection">
                 <!-- Wheel Structure -->
                 <div id="wheelContainer" class="wheel-container">
+                    <div class="slider-track"></div>
+                    <div id="sliderProgress" class="slider-progress"></div>
                     <div class="marker"></div>
                     <div id="wheel" class="wheel"></div>
-                    <div id="wheelCenter" class="wheel-center">Spin!</div>
+                    <div id="wheelCenter" class="wheel-center">Drag to Spin</div>
+                    <div id="sliderHandle" class="slider-handle"></div>
                 </div>
 
                 <p id="prankMessage"
                     style="display: none; color: #e74c3c; margin-top: 10px; font-weight: 700; font-size: 1.25em; background: #fff5f5; padding: 15px; border-radius: 12px; border: 2px dashed #ffcdd2;">
-                    lol just kidding! 😜 This was a warm-up spin.
+                    lol just kidding! 😜 This was a warm-up spin. Spin Again!
                 </p>
-
-                <button id="seeAmountBtn" type="button" style="background: #f1c40f; color: #333; margin-top: 10px;">Spin
-                    Again</button>
 
                 <p id="finalMessage"
                     style="display: none; color: #2ecc71; margin-top: 10px; font-weight: 600; font-size: 1.1em; background: #f0fff4; padding: 15px; border-radius: 12px; border: 2px solid #c6f6d5;">
-                    Congratulations! Expect your reward via UPI by the end of the week.
+                    Congratulations! Expect to receive your gift card by the end of the week.
+                </p>
+
+                <p id="supportMessage"
+                    style="display: none; color: #555; margin-top: 20px; font-style: italic; line-height: 1.6; border-top: 1px solid #eee; padding-top: 15px;">
+                    Thank you once again for the incredible support this year. Looking forward to the same energy,
+                    teamwork, and collaboration in the year ahead.
                 </p>
             </div>
 
@@ -488,7 +569,7 @@
             // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
             // After deploying your Apps Script, you'll get a URL like:
             // https://script.google.com/macros/s/AKfycby.../exec
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbynQU_ss3_rbnIrpH9S4ZUuGHY4UilLLkcxZIUvkUDGma6JEUbh7tgT-1jzpFlSbBdL/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkyxaFeNMOovmxFb1R0QMQ4SJQ8Qi3IQBBR7F3CVIpWDJdCANqdFf427XFaTbLQiuY/exec';
 
             const form = document.getElementById('voucherForm');
             const detailsForm = document.getElementById('detailsForm');
@@ -502,9 +583,50 @@
             const amountDisplay = document.getElementById('wheelCenter'); // Re-purpose for center text
             const wheelContainer = document.getElementById('wheelContainer');
             const wheel = document.getElementById('wheel');
-            const seeAmountBtn = document.getElementById('seeAmountBtn');
             const prankMessage = document.getElementById('prankMessage');
             const finalMessage = document.getElementById('finalMessage');
+            const supportMessage = document.getElementById('supportMessage');
+            const preferenceSelect = document.getElementById('preference');
+            const redemptionSection = document.getElementById('redemptionSection');
+            const redemptionSteps = document.getElementById('redemptionSteps');
+
+            const redemptionData = {
+                'JioMart': [
+                    'Log on to JioMart application on your mobile.',
+                    'Select the products of your choice and add them to the cart.',
+                    'Move to the checkout page and select Add Gift Card/ Voucher Code.',
+                    'Enter the 16 digit Voucher code and redeem the Voucher.'
+                ],
+                'Dominos': [
+                    'Log on to Dominos App and Website.',
+                    'Add the items in the cart and proceed to checkout.',
+                    'Click on E Vouchers Tab to add the Gift Cards. Enter Gift Card number and PIN and click on submit.'
+                ],
+                'BigBasket': [
+                    'Gift Card can be used on Bigbasket App and M-site where Bigbasket is present.',
+                    'Go to My Gift Cards under my account section',
+                    'Enter your Gift Card Code and Gift Card PIN',
+                    'The value of the Gift Card gets added to bigbasket wallet'
+                ],
+                'EatSure': [
+                    'Go to EatSure android/iOS app.',
+                    'Select the items of your choice & proceed to checkout.',
+                    'Select the "Pay by Gift Card" option.',
+                    'Enter your 16-digit Gift Card number and PIN number.'
+                ]
+            };
+
+            if (preferenceSelect) {
+                preferenceSelect.onchange = function () {
+                    const selected = this.value;
+                    if (redemptionData[selected]) {
+                        redemptionSteps.innerHTML = redemptionData[selected].map(step => `<li>${step}</li>`).join('');
+                        redemptionSection.style.display = 'block';
+                    } else {
+                        redemptionSection.style.display = 'none';
+                    }
+                };
+            }
 
             let hasPranked = false; // Track if we've done the prank yet
             const voucherInput = document.getElementById('voucherId');
@@ -541,133 +663,260 @@
                     }
                 } else {
                     if (button === submitBtn) {
-                        button.textContent = 'Validate';
+                        button.textContent = 'Open Sesame';
                     } else {
                         button.textContent = 'Submit';
                     }
                 }
             }
 
-            function setupFetchAmountBtn() {
-                seeAmountBtn.style.display = 'inline-block';
-                seeAmountBtn.textContent = 'Spin Now';
-                seeAmountBtn.style.backgroundColor = '#f1c40f';
-                seeAmountBtn.style.color = '#333';
-                seeAmountBtn.disabled = false;
 
-                // Show wheel initially
+
+            // Circular Slider Logic
+            let isDragging = false;
+            let startAngle = -90; // Start at top
+            let currentRotation = 0;
+            let totalDragged = 0;
+            let lastAngle = -90;
+
+            function initCircularSlider() {
+                const handle = document.getElementById('sliderHandle');
+                const progress = document.getElementById('sliderProgress');
+                const container = wheelContainer;
+
+                progress.style.display = 'block';
+                handle.style.display = 'flex';
+                amountDisplay.textContent = 'Drag the pointer';
+
+                // Reset state
+                currentRotation = 0;
+                totalDragged = 0;
+                lastAngle = -90;
+                updateHandlePosition(-90);
+                updateProgress(0);
+
+                function getAngle(e) {
+                    const rect = container.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return Math.atan2(clientY - centerY, clientX - centerX) * 180 / Math.PI;
+                }
+
+                function handleMove(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+
+                    const angle = getAngle(e);
+                    let delta = angle - lastAngle;
+
+                    // Handle crossing -180/180
+                    if (delta < -180) delta += 360;
+                    if (delta > 180) delta -= 360;
+
+                    // Only allow clockwise dragging
+                    if (delta > 0) {
+                        if (handle.style.transition !== 'none') {
+                            handle.style.transition = 'none';
+                            progress.style.transition = 'none';
+                        }
+                        totalDragged += delta;
+                        lastAngle = angle;
+                        updateHandlePosition(angle);
+                        updateProgress(totalDragged);
+
+                        if (totalDragged >= 360) {
+                            finishDrag();
+                        }
+                    }
+                }
+
+                function finishDrag() {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', handleMove);
+                    document.removeEventListener('mouseup', handleEnd);
+                    document.removeEventListener('touchmove', handleMove);
+                    document.removeEventListener('touchend', handleEnd);
+
+                    handle.style.display = 'none';
+                    progress.style.display = 'none';
+                    triggerSpin();
+                }
+
+                function handleEnd() {
+                    isDragging = false;
+                    document.removeEventListener('mousemove', handleMove);
+                    document.removeEventListener('mouseup', handleEnd);
+                    document.removeEventListener('touchmove', handleMove);
+                    document.removeEventListener('touchend', handleEnd);
+
+                    if (totalDragged < 360 && totalDragged > 0) {
+                        // Snap back
+                        handle.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        progress.style.transition = 'background 0.5s ease';
+
+                        totalDragged = 0;
+                        lastAngle = -90;
+                        updateHandlePosition(-90);
+                        updateProgress(0);
+
+                        setTimeout(() => {
+                            handle.style.transition = 'transform 0.1s ease';
+                            progress.style.transition = 'none';
+                        }, 500);
+                    }
+                }
+
+                handle.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    lastAngle = getAngle(e);
+                    document.addEventListener('mousemove', handleMove);
+                    document.addEventListener('mouseup', handleEnd);
+                });
+
+                handle.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    lastAngle = getAngle(e);
+                    document.addEventListener('touchmove', handleMove, { passive: false });
+                    document.addEventListener('touchend', handleEnd);
+                });
+
+                function updateHandlePosition(angle) {
+                    const radius = 138; // Adjusted radius
+                    const rad = angle * Math.PI / 180;
+                    const x = Math.cos(rad) * radius;
+                    const y = Math.sin(rad) * radius;
+                    // Pointer tip to center
+                    handle.style.transform = `translate(${x}px, ${y}px) rotate(${angle + 90}deg)`;
+                }
+
+                function updateProgress(degrees) {
+                    const p = Math.min(degrees, 360);
+                    progress.style.background = `conic-gradient(#f1c40f 0deg ${p}deg, transparent ${p}deg)`;
+                }
+            }
+
+            function setupFetchAmountBtn() {
+                // Initial setup for the slider
                 wheelContainer.style.display = 'block';
                 prankMessage.style.display = 'none';
+                initCircularSlider();
+            }
 
-                seeAmountBtn.onclick = async function () {
-                    // 1. UI Setup
-                    seeAmountBtn.style.display = 'none'; // Hide button
-                    seeAmountBtn.classList.remove('fade-in-up'); // Clear animation for re-trigger
-                    prankMessage.classList.remove('fade-in-up');
+            async function triggerSpin() {
+                // 1. UI Setup
+                // seeAmountBtn references removed
+                prankMessage.classList.remove('fade-in-up');
 
-                    wheelContainer.style.display = 'block';
-                    // amountDisplay.textContent = 'Spinning...'; // Removed static text
-                    wheel.classList.add('spinning');
-                    prankMessage.style.display = 'none';
+                wheelContainer.style.display = 'block';
+                wheel.classList.add('spinning');
+                prankMessage.style.display = 'none';
 
-                    // Add running numbers animation in the center
-                    let spinInterval = setInterval(() => {
-                        const randomVal = Math.floor(Math.random() * 1001); // 0 to 1000
-                        amountDisplay.textContent = '₹' + randomVal;
-                    }, 50); // Fast update for "running" effect
+                // Add running numbers animation in the center
+                let spinInterval = setInterval(() => {
+                    const randomVal = Math.floor(Math.random() * 1001); // 0 to 1000
+                    amountDisplay.textContent = randomVal;
+                }, 50); // Fast update for "running" effect
 
-                    // 2. Initiate Fetch & Timer
-                    const minAnimationTime = 2000; // Reduced to 2s as requested
+                // 2. Initiate Fetch & Timer
+                const minAnimationTime = 2000; // Reduced to 2s as requested
 
-                    // --- LOGIC SPLIT: PRANK vs REAL ---
+                // --- LOGIC SPLIT: PRANK vs REAL ---
 
-                    if (!hasPranked) {
-                        // === PRANK MODE ===
-                        // Wait only for animation time
-                        await new Promise(resolve => setTimeout(resolve, minAnimationTime));
+                if (!hasPranked) {
+                    // === PRANK MODE ===
+                    // Wait only for animation time
+                    await new Promise(resolve => setTimeout(resolve, minAnimationTime));
 
-                        // Stop Animation
-                        clearInterval(spinInterval);
-                        wheel.classList.remove('spinning');
-                        const randomStop = Math.floor(Math.random() * 360);
-                        wheel.style.transform = `rotate(${randomStop}deg)`;
+                    // Stop Animation
+                    clearInterval(spinInterval);
+                    wheel.classList.remove('spinning');
+                    const randomStop = Math.floor(Math.random() * 360);
+                    wheel.style.transform = `rotate(${randomStop}deg)`;
 
-                        // Show Prank
-                        amountDisplay.innerHTML = '<div style="font-size:0.8em; line-height:1.2; padding:5px;">Better luck<br>next time!</div>';
+                    // Show Prank
+                    amountDisplay.innerHTML = '<div style="font-size:0.8em; line-height:1.2; padding:5px;">Better luck<br>next time!</div>';
 
-                        // Small pause (600ms)
-                        await new Promise(resolve => setTimeout(resolve, 600));
+                    // Small pause (600ms)
+                    await new Promise(resolve => setTimeout(resolve, 600));
 
-                        // Both animate together
-                        prankMessage.classList.add('fade-in-up');
-                        prankMessage.style.display = 'block';
+                    // Both animate together
+                    prankMessage.classList.add('fade-in-up');
+                    prankMessage.style.display = 'block';
 
-                        seeAmountBtn.textContent = 'Spin Again';
-                        seeAmountBtn.classList.add('fade-in-up');
-                        seeAmountBtn.style.display = 'inline-block';
+                    // Prepare for second spin automatically
+                    setTimeout(() => {
+                        initCircularSlider();
+                    }, 1000);
 
-                        hasPranked = true;
-                        return; // STOP HERE
-                    }
+                    hasPranked = true;
+                    return; // STOP HERE
+                }
 
-                    // === REAL MODE (Execution continues if hasPranked is true) ===
-                    let fetchPromise;
+                // === REAL MODE (Execution continues if hasPranked is true) ===
+                let fetchPromise;
 
-                    // Create the fetch promise
-                    try {
-                        fetchPromise = fetch(`${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}`)
-                            .then(r => r.json())
-                            .catch(e => {
-                                // Fallback logic wrapped in promise
-                                return new Promise((resolve) => {
-                                    const callbackName = 'amountCallback_' + Date.now();
-                                    window[callbackName] = function (response) {
-                                        delete window[callbackName];
-                                        resolve(response);
-                                    };
-                                    const script = document.createElement('script');
-                                    script.src = `${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}&callback=${callbackName}`;
-                                    document.body.appendChild(script);
-                                    // Safety timeout for JSONP
-                                    setTimeout(() => resolve({ success: false, message: 'Timeout' }), 10000);
-                                });
+                // Create the fetch promise
+                try {
+                    fetchPromise = fetch(`${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}`)
+                        .then(r => r.json())
+                        .catch(e => {
+                            // Fallback logic wrapped in promise
+                            return new Promise((resolve) => {
+                                const callbackName = 'amountCallback_' + Date.now();
+                                window[callbackName] = function (response) {
+                                    delete window[callbackName];
+                                    resolve(response);
+                                };
+                                const script = document.createElement('script');
+                                script.src = `${SCRIPT_URL}?action=getAmount&voucherId=${encodeURIComponent(currentVoucherId)}&callback=${callbackName}`;
+                                document.body.appendChild(script);
+                                // Safety timeout for JSONP
+                                setTimeout(() => resolve({ success: false, message: 'Timeout' }), 10000);
                             });
-                    } catch (e) {
-                        fetchPromise = Promise.resolve({ success: false, message: 'Error initiating fetch' });
-                    }
+                        });
+                } catch (e) {
+                    fetchPromise = Promise.resolve({ success: false, message: 'Error initiating fetch' });
+                }
 
-                    // 3. Wait for both Animation Timer AND Fetch
-                    try {
-                        const [data] = await Promise.all([
-                            fetchPromise,
-                            new Promise(resolve => setTimeout(resolve, minAnimationTime))
-                        ]);
+                // 3. Wait for both Animation Timer AND Fetch
+                try {
+                    const [data] = await Promise.all([
+                        fetchPromise,
+                        new Promise(resolve => setTimeout(resolve, minAnimationTime))
+                    ]);
 
-                        // 4. Finish Animation
-                        clearInterval(spinInterval); // Stop the running numbers
-                        wheel.classList.remove('spinning');
-                        // Add a randomized rotation to look like it stopped
-                        const randomStop = Math.floor(Math.random() * 360);
-                        wheel.style.transform = `rotate(${randomStop}deg)`;
+                    // 4. Finish Animation
+                    clearInterval(spinInterval); // Stop the running numbers
+                    wheel.classList.remove('spinning');
+                    // Add a randomized rotation to look like it stopped
+                    const randomStop = Math.floor(Math.random() * 360);
+                    wheel.style.transform = `rotate(${randomStop}deg)`;
 
-                        if (data && data.success && data.amount) {
-                            amountDisplay.innerHTML = '<div style="font-size:1.8em; color:#2ecc71;">₹' + data.amount + '</div>';
+                    if (data && data.success && data.amount) {
+                        amountDisplay.innerHTML = '<div style="font-size:1.8em; color:#2ecc71;">' + data.amount + '</div>';
 
-                            // Show final success message
-                            finalMessage.classList.add('fade-in-up');
-                            finalMessage.style.display = 'block';
-                        } else {
-                            amountDisplay.textContent = 'Error';
-                            seeAmountBtn.style.display = 'inline-block';
-                            seeAmountBtn.textContent = 'Retry';
-                        }
-                    } catch (err) {
-                        clearInterval(spinInterval);
-                        wheel.classList.remove('spinning');
+                        // Show final success message and support message
+                        finalMessage.classList.add('fade-in-up');
+                        finalMessage.style.display = 'block';
+
+                        setTimeout(() => {
+                            supportMessage.classList.add('fade-in-up');
+                            supportMessage.style.display = 'block';
+                        }, 500);
+                    } else {
                         amountDisplay.textContent = 'Error';
-                        seeAmountBtn.style.display = 'inline-block';
+                        // Re-enable slider on error
+                        setTimeout(() => initCircularSlider(), 1000);
                     }
-                };
+                } catch (err) {
+                    clearInterval(spinInterval);
+                    wheel.classList.remove('spinning');
+                    amountDisplay.textContent = 'Error';
+                    // Re-enable slider on error
+                    setTimeout(() => initCircularSlider(), 1000);
+                }
             }
 
             form.addEventListener('submit', async (e) => {
@@ -783,11 +1032,12 @@
                     voucherid: currentVoucherId,
                     name: document.getElementById('name').value.trim(),
                     email: document.getElementById('email').value.trim(),
-                    upi: document.getElementById('upi').value.trim()
+                    mobile: document.getElementById('mobile').value.trim(),
+                    preference: document.getElementById('preference').value
                 };
 
                 // Validate all fields (amount will be generated by backend)
-                if (!formData.name || !formData.email || !formData.upi) {
+                if (!formData.name || !formData.email || !formData.mobile || !formData.preference) {
                     showMessage('Please fill in all fields', true);
                     return;
                 }
@@ -922,7 +1172,7 @@
                     }
                 } else {
                     if (button === submitBtn) {
-                        button.textContent = 'Validate';
+                        button.textContent = 'Open Sesame';
                     } else {
                         button.textContent = 'Submit';
                     }
