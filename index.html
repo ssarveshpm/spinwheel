@@ -440,7 +440,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5em;
+            font-size: 1.25em;
             font-weight: bold;
             color: #1a1a1a;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
@@ -703,7 +703,7 @@
                     <div id="sliderProgress" class="slider-progress"></div>
                     <div class="marker"></div>
                     <div id="wheel" class="wheel"></div>
-                    <div id="wheelCenter" class="wheel-center">Drag to Spin</div>
+                    <div id="wheelCenter" class="wheel-center">Drag a full circle</div>
                     <div id="sliderHandle" class="slider-handle">
                         <div class="handle-visual"></div>
                     </div>
@@ -824,7 +824,7 @@
                 track.classList.remove('done');
                 handle.style.display = 'flex';
                 if (!keepText) {
-                    amountDisplay.textContent = 'Drag the pointer';
+                    amountDisplay.textContent = 'Drag a full circle';
                 }
 
                 // Reset state
